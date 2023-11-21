@@ -18,12 +18,13 @@ const Home = () => {
 		dispatch(setLoading(true));
 		let url = "https://api.escuelajs.co/api/v1/products";
 		if (category !== "all") {
-			url += `/category/${category}`;
+			url = `https://api.escuelajs.co/api/v1/categories/${category}/products`;
 		}
 
 		fetch(url)
 			.then((res) => res.json())
 			.then((data) => {
+				console.log("data", data);
 				dispatch(setProducts(data));
 				dispatch(setLoading(false));
 			})
@@ -48,20 +49,20 @@ const Home = () => {
 	return (
 		<div>
 			<div className="button-container">
-				<button className="button-28" onClick={() => fetchProducts("Clothes")}>
-					Clothes
+				<button className="button-57" onClick={() => fetchProducts("1")}>
+					Clothes <span>Clothes</span>
 				</button>
-				<button className="button-28" onClick={() => fetchProducts("Electronics")}>
-					Electronics
+				<button className="button-57" onClick={() => fetchProducts("2")}>
+					Electronics <span>Electronics</span>
 				</button>
-				<button className="button-28" onClick={() => fetchProducts("Furniture")}>
-					Furniture
+				<button className="button-57" onClick={() => fetchProducts("3")}>
+					Furniture <span>Furniture</span>
 				</button>
-				<button className="button-28" onClick={() => fetchProducts("Shoes")}>
-					Shoes
+				<button className="button-57" onClick={() => fetchProducts("4")}>
+					Shoes <span>Shoes</span>
 				</button>
-				<button className="button-28" onClick={() => fetchProducts("Miscellaneous")}>
-					Miscellaneous
+				<button className="button-57" onClick={() => fetchProducts("5")}>
+					Miscellaneous <span>Miscellaneous</span>
 				</button>
 			</div>
 
@@ -72,13 +73,14 @@ const Home = () => {
 							<Card style={{ width: "16rem" }}>
 								<Card.Img variant="top" src={product.images} alt={product.title} />
 								<Card.Body>
-									<Card.Title>{product.title}</Card.Title>
-									<Card.Text>
+									<Card.Title className="text">{product.title}</Card.Title>
+									<Card.Text className="text">
 										<h5>{`${product.price}$`}</h5>
-										Some quick example text to build on the card title and make
-										up the bulk of the card's content.
+										{product.description}
 									</Card.Text>
-									<Button variant="primary">장바구니에 담기</Button>
+									<Button variant="primary" onClick={handleAddToCart}>
+										Add to Cart
+									</Button>
 								</Card.Body>
 							</Card>
 						</Link>

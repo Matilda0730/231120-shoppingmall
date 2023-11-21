@@ -4,18 +4,25 @@ import { Link } from "react-router-dom";
 
 function Navbar() {
 	return (
-		<div>
+		<div className="nav-container">
 			<Link to="/">
-				<div className="nav-home">
-					<House size={32} />
-				</div>
+				<p>Platzi Fake Store</p>
 			</Link>
+			<div>
+				<div className="nav-right-container">
+					<Link to="/">
+						<div className="nav-home">
+							<House size={32} />
+						</div>
+					</Link>
 
-			<Link to="/production">
-				<div className="nav-production">
-					<CoatHanger size={32} />
+					<Link to="/production">
+						<div className="nav-production">
+							<CoatHanger size={32} />
+						</div>
+					</Link>
 				</div>
-			</Link>
+			</div>
 		</div>
 	);
 }

@@ -3,21 +3,36 @@
 * {
 	margin: 0;
 	padding: 0;
+	font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable",
+		Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji",
+		"Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
 }
-
+button {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
 a {
 	text-decoration: none;
 	color: inherit;
 }
 
-.nav-bar {
+.nav-container {
 	height: 70px;
-	background-color: #111;
+	background-color: #efefef;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	padding: 0 2rem;
+	margin-bottom: 20px;
 }
+
+.nav-container p {
+	margin-top: 20px;
+	font-size: 20px;
+	font-weight: 600;
+}
+
 .nav-bar a {
 	text-decoration: none;
 	color: white;
@@ -36,7 +51,7 @@ a {
 	margin: 10px;
 }
 
-.right-container {
+.nav-right-container {
 	display: flex;
 	align-items: center; /* 세로 중앙 정렬 */
 }
@@ -101,6 +116,13 @@ a {
 	padding: 10px;
 }
 
+.text {
+	text-align: center;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
 img {
 	object-fit: cover;
 	width: 150px;
@@ -156,45 +178,66 @@ img {
 }
 
 /* CSS */
-.button-28 {
-	appearance: none;
-	background-color: transparent;
-	border: 2px solid #1a1a1a;
-	border-radius: 15px;
-	box-sizing: border-box;
-	color: #3b3b3b;
-	cursor: pointer;
+.button-57 {
+	position: relative;
+	overflow: hidden;
+	border: 1px solid #18181a;
+	color: #18181a;
 	display: inline-block;
 	font-size: 15px;
-	font-weight: 600;
-	line-height: normal;
-	margin: 30px 5px 30px 5px;
-	min-height: 20px;
-	min-width: 0;
-	outline: none;
-	padding: 10px 10px;
-	text-align: center;
+	line-height: 15px;
+	padding: 18px 18px 17px;
 	text-decoration: none;
-	transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
+	cursor: pointer;
+	background: #fff;
 	user-select: none;
 	-webkit-user-select: none;
 	touch-action: manipulation;
-	width: 140px;
-	will-change: transform;
+	margin: 5px;
 }
 
-.button-28:disabled {
-	pointer-events: none;
+.button-57 span:first-child {
+	position: relative;
+	transition: color 600ms cubic-bezier(0.48, 0, 0.12, 1);
+	z-index: 10;
 }
 
-.button-28:hover {
-	color: #fff;
-	background-color: #1a1a1a;
-	box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-	transform: translateY(-2px);
+.button-57 span:last-child {
+	color: white;
+	display: block;
+	position: absolute;
+	bottom: 0;
+	transition: all 500ms cubic-bezier(0.48, 0, 0.12, 1);
+	z-index: 100;
+	opacity: 0;
+	top: 50%;
+	left: 50%;
+	transform: translateY(225%) translateX(-50%);
+	height: 14px;
+	line-height: 13px;
 }
 
-.button-28:active {
-	box-shadow: none;
-	transform: translateY(0);
+.button-57:after {
+	content: "";
+	position: absolute;
+	bottom: -50%;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	transform-origin: bottom center;
+	transition: transform 600ms cubic-bezier(0.48, 0, 0.12, 1);
+	transform: skewY(9.3deg) scaleY(0);
+	z-index: 50;
+}
+
+.button-57:hover:after {
+	transform-origin: bottom center;
+	transform: skewY(9.3deg) scaleY(2);
+}
+
+.button-57:hover span:last-child {
+	transform: translateX(-50%) translateY(-100%);
+	opacity: 1;
+	transition: all 900ms cubic-bezier(0.48, 0, 0.12, 1);
 }

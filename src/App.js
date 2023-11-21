@@ -8,6 +8,7 @@ import Production from "./Components/ProductView/Production";
 import NotFound from "./Components/NotFound/NotFound";
 import Login from "./Components/Auth/Login";
 import Logout from "./Components/Auth/Logout";
+import Signup from "./Components/Auth/Signup";
 
 function App() {
 	return (
@@ -20,7 +21,8 @@ function App() {
 					<Route path="/not-found" element={<NotFound />} />
 					<Route path="*" element={<Navigate to="/not-found" replace />} />
 					<Route path="/login" element={<Login />} />
-					<Route path="/login" element={<Logout />} />
+					<Route path="/logout" element={<Logout />} />
+					<Route path="/sign-up" element={<Signup />} />
 				</Routes>
 			</BrowserRouter>
 		</div>
