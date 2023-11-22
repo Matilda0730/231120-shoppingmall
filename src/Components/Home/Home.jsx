@@ -24,7 +24,6 @@ const Home = () => {
 		fetch(url)
 			.then((res) => res.json())
 			.then((data) => {
-				console.log("data", data);
 				dispatch(setProducts(data));
 				dispatch(setLoading(false));
 			})
@@ -33,6 +32,7 @@ const Home = () => {
 				dispatch(setLoading(false));
 			});
 	};
+
 	useEffect(() => {
 		dispatch(setLoading(true));
 		fetch("https://api.escuelajs.co/api/v1/products")

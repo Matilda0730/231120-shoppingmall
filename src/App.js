@@ -9,6 +9,7 @@ import NotFound from "./Components/NotFound/NotFound";
 import Login from "./Components/Auth/Login";
 import Logout from "./Components/Auth/Logout";
 import Signup from "./Components/Auth/Signup";
+import Cart from "./Components/Cart/Cart";
 
 function App() {
 	return (
@@ -23,6 +24,7 @@ function App() {
 					<Route path="/login" element={<Login />} />
 					<Route path="/logout" element={<Logout />} />
 					<Route path="/sign-up" element={<Signup />} />
+					<Route path="/cart" element={<Cart />} />
 				</Routes>
 			</BrowserRouter>
 		</div>
