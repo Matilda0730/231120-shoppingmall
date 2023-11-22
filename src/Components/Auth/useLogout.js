@@ -14,6 +14,7 @@ export const useLogout = () => {
 			signOut(auth)
 				.then(() => {
 					dispatch(clearUser());
+					alert("Logout");
 					navigate("/");
 				})
 				.catch((error) => {

@@ -22,7 +22,6 @@ const CategoryProducts = ({ categoryId }) => {
 
 	return (
 		<div>
-			<h1>Products</h1>
 			<div className="products-container">
 				{products.map((product) => (
 					<div key={product.id} className="product-card">

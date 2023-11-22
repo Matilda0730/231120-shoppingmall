@@ -7,10 +7,6 @@ const initialState = localStorage.getItem("user")
 export const authSlice = createSlice({
 	name: "user",
 	initialState,
-	// initialState: {
-	// 	user: null,
-	// 	loading: false,
-	// },
 	reducers: {
 		setUser: (state, action) => {
 			state.user = {

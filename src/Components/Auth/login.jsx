@@ -1,7 +1,6 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useEffect } from "react";
 import { auth } from "./firebaseConfig";
-import Logout from "./Logout";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../features/authSlice";
