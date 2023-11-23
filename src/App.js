@@ -17,13 +17,12 @@ function App() {
 				<Navbar />
 				<Routes>
 					<Route path="/" element={<Home />} />
-					<Route path="/production" element={<Production />} />
-					<Route path="/not-found" element={<NotFound />} />
-					<Route path="*" element={<Navigate to="/not-found" replace />} />
+					<Route path="/production/:id" element={<Production />} />
 					<Route path="/login" element={<Login />} />
-
 					<Route path="/sign-up" element={<Signup />} />
 					<Route path="/cart" element={<Cart />} />
+					<Route path="/not-found" element={<NotFound />} />
+					<Route path="*" element={<Navigate to="/not-found" replace />} />
 				</Routes>
 			</BrowserRouter>
 		</div>

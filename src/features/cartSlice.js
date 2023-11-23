@@ -2,41 +2,77 @@ import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 
 const initialState = {
-	cartItems: localStorage.getItem("cartItems")
-		? JSON.parse(localStorage.getItem("cartItems"))
+	products: localStorage.getItem("cartProducts")
+		? JSON.parse(localStorage.getItem("cartProducts") || "")
 		: [],
-	cartTotalQuantity: 0,
-	cartTotalAmount: 0,
+	totalPrice: 0,
+	userID: localStorage.getItem("userId"),
 };
-//초기화
 
-const cartSlice = createSlice({
+export const cartSlice = createSlice({
 	name: "cart",
 	initialState,
 	reducers: {
-		addToCart(state, action) {
-			const existingIndex = state.cartItems.findIndex(
-				(item) => item.id === action.payload.id
+		setUserId: (state, action) => {
+			state.userId = action.payload;
+			localStorage.setItem("userId", JSON.stringify(state.userId));
+		},
+		removeUserId: (state) => {
+			state.userId = "";
+			localStorage.setItem("userId", JSON.stringify(state.userId));
+		},
+
+		addToCart: (state, action) => {
+			state.products.push({
+				...action.payload,
+				quantity: 1,
+				total: action.payload.price,
+			});
+			localStorage.setItem("cartProducts", JSON.stringify(state.products));
+		},
+		deleteFromCart: (state, action) => {
+			state.products = state.products.filter((item) => item.id !== action.payload);
+			localStorage.setItem("cartProducts", JSON.stringify(state.products));
+		},
+		incrementProduct: (state, action) => {
+			state.products = state.products.map((item) =>
+				item.id === action.payload
+					? {
+							...item,
+							quantity: item.quantity + 1,
+							total: item.price * (item.quantity + 1),
+					  }
+					: item
 			);
-			if (existingIndex >= 0) {
-				state.cartItems[existingIndex] = {
-					...state.cartItems[existingIndex],
-					cartQuantity: state.cartItems[existingIndex].cartQuantity + 1,
-				};
-				toast.info("Increased product quantity", {
-					position: "top-center",
-				});
-			} else {
-				let tempProductItem = { ...action.payload, cartQuantity: 1 };
-				state.cartItems.push(tempProductItem);
-				toast.success("Product added to cart", {
-					position: "top-center",
-				});
-			}
+			localStorage.setItem("cartProducts", JSON.stringify(state.products));
+		},
+		decrementProduct: (state, action) => {
+			state.products = state.products.map((item) =>
+				item.id === action.payload
+					? {
+							...item,
+							quantity: item.quantity - 1,
+							total: item.price * (item.quantity - 1),
+					  }
+					: item
+			);
+			localStorage.setItem("cartProducts", JSON.stringify(state.products));
+		},
+
+		getTotalPrice: (state) => {
+			state.totalPrice = state.products.reduce((acc, item) => (acc += item.total), 0);
+			return state;
 		},
 	},
 });
-
-export const { addToCart } = cartSlice.actions;
-
 export default cartSlice.reducer;
+
+export const {
+	setUserId,
+	removeUserId,
+	addToCart,
+	deleteFromCart,
+	incrementProduct,
+	decrementProduct,
+	getTotalPrice,
+} = cartSlice.actions;

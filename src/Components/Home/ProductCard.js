@@ -1,12 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
-const ProductCard = ({ product, onAddToCart }) => {
+const ProductCard = ({ product }) => {
+	const onAddToCart = () => {
+		console.log(product);
+	};
+
 	return (
 		<div className="item-card">
-			<Link to={`/product-details/${product.id}`} className="product-link">
+			<Link to={`/production/${product.id}`} className="product-link">
 				<Card style={{ width: "16rem" }}>
 					<Card.Img variant="top" src={product.images} alt={product.title} />
 					<Card.Body>

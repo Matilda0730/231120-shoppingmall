@@ -5,6 +5,7 @@ import { setProducts, setLoading } from "../../features/productsSlice";
 import { addToCart } from "../../features/cartSlice";
 import CategorySelector from "./CategorySelector";
 import ProductCard from "./ProductCard";
+import { Link } from "react-router-dom";
 
 const Home = () => {
 	const dispatch = useDispatch();
@@ -14,12 +15,26 @@ const Home = () => {
 		dispatch(addToCart(product));
 	};
 
+	useEffect(() => {
+		dispatch(setLoading(true));
+		fetch("https://api.escuelajs.co/api/v1/products")
+			.then((res) => res.json())
+			.then((data) => {
+				dispatch(setProducts(data));
+				dispatch(setLoading(false));
+			})
+			.catch((error) => {
+				console.error("Error:", error);
+				dispatch(setLoading(false));
+			});
+	}, [dispatch]);
+
 	return (
 		<div>
 			<CategorySelector />
 			<div className="products-container">
 				{products.map((product) => (
-					<ProductCard key={product.id} product={product} onAddToCart={handleAddToCart} />
+					<ProductCard key={product.id} product={product} />
 				))}
 			</div>
 		</div>

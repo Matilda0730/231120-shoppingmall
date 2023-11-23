@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../features/authSlice";
 import { useForm } from "react-hook-form";
+import { setUserId } from "../../features/cartSlice";
 
 const Login = () => {
 	const dispatch = useDispatch();
@@ -59,6 +60,8 @@ const Login = () => {
 						email: userCredential.user.email,
 					})
 				);
+				dispatch(setUserId(userCredential.user.uid));
+				navigate("/");
 			})
 			.catch((error) => {
 				alert("아이디나 비밀번호가 다릅니다.");
