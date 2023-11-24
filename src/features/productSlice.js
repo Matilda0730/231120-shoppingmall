@@ -1,19 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export const fetchProduct = createAsyncThunk(
-	"product/fetchProduct",
-	async (categoryId, thunkAPI) => {
-		try {
-			const response = await fetch(
-				`https://fakestoreapi.com/products/category/${categoryId}`
-			);
-			const data = await response.json();
-			return data;
-		} catch (e) {
-			return thunkAPI.rejectWithValue("Error loading product");
-		}
+export const fetchProduct = createAsyncThunk("product/fetchProduct", async (id, thunkAPI) => {
+	try {
+		const response = await fetch(`https://fakestoreapi.com/products/${id}`);
+		const data = await response.json();
+		return data;
+	} catch (e) {
+		return thunkAPI.rejectWithValue("Error loading product");
 	}
-);
+});
 
 export const productSlice = createSlice({
 	name: "product",
@@ -23,8 +18,8 @@ export const productSlice = createSlice({
 		error: "",
 	},
 	reducers: {
-		setProducts: (state, action) => {
-			state.items = action.payload;
+		setProduct: (state, action) => {
+			state.product = action.payload;
 		},
 		setLoading: (state, action) => {
 			state.loading = action.payload;
@@ -38,7 +33,7 @@ export const productSlice = createSlice({
 			})
 			.addCase(fetchProduct.fulfilled, (state, action) => {
 				state.isLoading = false;
-				state.products = action.payload;
+				state.product = action.payload;
 			})
 			.addCase(fetchProduct.rejected, (state, action) => {
 				state.loading = false;
