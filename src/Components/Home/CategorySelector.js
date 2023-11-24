@@ -2,26 +2,35 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { setProducts } from "../../features/productsSlice";
+import { setLoading } from "../../features/productSlice";
 
 const CategorySelector = () => {
 	const dispatch = useDispatch();
 
-	const fetchProducts = (categoryId) => {
-		fetch(`https://api.escuelajs.co/api/v1/categories/${categoryId}/products`)
+	const fetchProducts = (category) => {
+		dispatch(setLoading(true));
+		let url = `https://fakestoreapi.com/products`;
+		if (category !== "all") {
+			url += `/category/${category}`;
+		}
+
+		fetch(url)
 			.then((res) => res.json())
 			.then((data) => {
 				dispatch(setProducts(data));
+				dispatch(setLoading(false));
 			})
 			.catch((error) => {
-				console.error("Error fetching data: ", error);
+				console.log(error);
+				dispatch(setLoading(false));
 			});
 	};
 	const categories = {
-		Clothes: "1",
-		Electronics: "2",
-		Furniture: "3",
-		Shoes: "4",
-		Miscellaneous: "5",
+		all: "all",
+		Electronics: "electronics",
+		Jewelery: "jewelery",
+		MensClothing: `men's clothing`,
+		WomenClothing: `women's clothing`,
 	};
 	const categoriesArray = Object.entries(categories).map(([name, id]) => ({ name, id }));
 	return (

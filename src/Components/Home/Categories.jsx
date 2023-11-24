@@ -7,7 +7,7 @@ const CategoryProducts = ({ categoryId }) => {
 	const fetchProducts = async (categoryId) => {
 		try {
 			const response = await fetch(
-				`https://api.escuelajs.co/api/v1/categories/${categoryId}/products`
+				`https://fakestoreapi.com/products/category/${categoryId}`
 			);
 			const data = await response.json();
 			setProducts(data);
@@ -25,7 +25,7 @@ const CategoryProducts = ({ categoryId }) => {
 			<div className="products-container">
 				{products.map((product) => (
 					<div key={product.id} className="product-card">
-						<img src={product.images[0]} alt={product.title} />
+						<img src={product.image} alt={product.title} />
 						<h5>{product.title}</h5>
 						<p>${product.price}</p>
 					</div>

@@ -3,9 +3,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 export const fetchProducts = createAsyncThunk(
 	"products/fetchProducts",
 	async (categoryId, thunkAPI) => {
-		const response = await fetch(
-			`https://api.escuelajs.co/api/v1/categories/${categoryId}/products`
-		);
+		const response = await fetch(`https://fakestoreapi.com/products/category/${categoryId}`);
 		const data = await response.json();
 		return data;
 	}

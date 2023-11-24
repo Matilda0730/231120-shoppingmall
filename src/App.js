@@ -9,11 +9,14 @@ import NotFound from "./Components/NotFound/NotFound";
 import Login from "./Components/Auth/Login";
 import Signup from "./Components/Auth/Signup";
 import Cart from "./Components/Cart/Cart";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
 	return (
 		<div className="App">
 			<BrowserRouter>
+				<ToastContainer />
 				<Navbar />
 				<Routes>
 					<Route path="/" element={<Home />} />

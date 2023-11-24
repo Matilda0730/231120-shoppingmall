@@ -17,7 +17,7 @@ const Home = () => {
 
 	useEffect(() => {
 		dispatch(setLoading(true));
-		fetch("https://api.escuelajs.co/api/v1/products")
+		fetch(`https://fakestoreapi.com/products/`)
 			.then((res) => res.json())
 			.then((data) => {
 				dispatch(setProducts(data));
