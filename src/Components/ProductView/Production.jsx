@@ -32,7 +32,7 @@ const Production = () => {
 			) : (
 				<div className="card_wrapper">
 					<div className="card_img">
-						<img src={products.images} alt="product title" />
+						<img src={product.image} alt="product's title" />
 					</div>
 					<div className="card_description">
 						<h3>{products.category}</h3>
