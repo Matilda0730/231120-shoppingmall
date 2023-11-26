@@ -14,7 +14,6 @@ const Home = () => {
 	const handleAddToCart = (product) => {
 		dispatch(addToCart(product));
 	};
-	
 
 	useEffect(() => {
 		dispatch(setLoading(true));
