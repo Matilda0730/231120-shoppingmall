@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useLogout } from "../Auth/useLogout"; // 커스텀 훅을 사용, 로그아웃 버튼을 누르면 로그아웃 되게 만듦
 import { useSelector } from "react-redux";
 import Modals from "./Modals";
+import styles from "./navbar.module.scss";
 
 function Navbar() {
 	const { products } = useSelector((state) => state.cart);
@@ -32,7 +33,7 @@ function Navbar() {
 				</Link>
 				<Link to="/cart">
 					<div
-						className="cart-modal-container"
+						className={styles.cart_modal_container}
 						onMouseEnter={handleMouseEnter}
 						onMouseLeave={handleMouseLeave}
 					>

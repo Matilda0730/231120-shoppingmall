@@ -22,7 +22,7 @@ export const cartSlice = createSlice({
 			localStorage.setItem("userId", JSON.stringify(state.userId));
 		},
 		addToCart: (state, action) => {
-			//findIndex() 메서드는 주어진 판별 함수를 만족하는 배열의 첫 번째 요소에 대한 인덱스를 반환합니다. 만족하는 요소가 없으면 -1을 반환합니다.
+			//findIndex() 메서드는 주어진 판별 함수를 만족하는 배열의 첫 번째 요소에 대한 인덱스를 반환. 만족하는 요소가 없으면 -1을 반환.
 			const existingIndex = state.products.findIndex((item) => item.id === action.payload.id);
 
 			if (existingIndex >= 0) {

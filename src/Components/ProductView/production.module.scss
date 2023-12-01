@@ -1,0 +1,28 @@
+.page_parent {
+	display: flex;
+	align-items: center; /* 세로 중앙 정렬 */
+	justify-content: center; /* 가로 중앙 정렬 */
+	height: 50vh;
+}
+.page {
+	align-items: center;
+	justify-content: center;
+}
+
+.card_wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.img {
+	width: 20%;
+	height: 40%;
+	margin-left: 10%;
+	margin-top: 10%;
+	margin-right: 10%;
+}
+
+.card_wrapper_description {
+	width: 800px;
+}
