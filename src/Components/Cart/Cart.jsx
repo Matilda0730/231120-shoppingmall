@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import CartEmpty from "./CartEmpty";
 import CartList from "./CartList";
 import CheckOut from "./CheckOut";
+import styles from "./Cart.module.scss";
 
 const Cart = () => {
 	const { products } = useSelector((state) => state.cart);
@@ -11,8 +12,7 @@ const Cart = () => {
 			{!products.length ? (
 				<CartEmpty title={"Cart"} />
 			) : (
-				<div className="container">
-					<h1>장바구니</h1>
+				<div className={styles.Cart_container}>
 					<CartList />
 					<CheckOut />
 				</div>

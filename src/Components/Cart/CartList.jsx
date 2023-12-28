@@ -2,6 +2,7 @@ import React from "react";
 import { NavItem } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import CartItem from "./CartItem";
+import styles from "./Cart.module.scss";
 
 const CartList = () => {
 	const { products } = useSelector((state) => state.cart);
